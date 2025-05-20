@@ -1,0 +1,46 @@
+git
+
+
+git init	creates a new Git repository
+git status	inspects the contents of the working directory and staging area
+git add		adds files from the working directory to the staging area
+git diff	shows the difference between the working directory and the staging area
+git commit	permanently stores file changes from the staging area in the repository
+git log		shows a list of all previous commits
+
+
+git reset HEAD <filename> 		Unstages file changes in the staging area.
+git reset <commit_SHA> 			Resets to a previous commit in your commit history.
+git checkout HEAD <filename>		Discards changes in the working directory.
+
+
+git branch				which branch am I on?
+git branch <new>			create new branch
+git branch -m <old> <new>		rename branch from old to new
+git branch -c <old> <new>		copy branch from old to new
+
+git checkout <new_branch>		switch to new_branch
+
+git merge <branch_name>			merge branch_name into current one
+
+	in case of conflict edit file, 
+		modify as desired final version, 
+		remove markings, save
+		add file && commit
+
+git branch -d <new_branch>		delete new_branch that was merged -D to force delete
+
+
+
+git remote -v				show name of origin repo
+git fetch				get changes with origin (without merging them)
+git merge origin/master			merge remote changes into current repo
+
+workflow:
+	1. Fetch and merge changes from the remote
+	2. Create a branch to work on a new project feature
+	3. Develop the feature on your branch and commit your work
+	4. Fetch and merge from the remote again (in case new commits were made while you were working)
+	5. Push your branch up to the remote for review
+
+git push origin <branch>		create a branch in origin with name branch
