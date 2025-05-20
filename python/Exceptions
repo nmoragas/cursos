@@ -1,0 +1,70 @@
+# EXEMPLE 1:
+
+def main():
+    percent = fuel_fun()
+    
+    if percent <= 1:
+        print("E")
+    elif percent >= 99:
+        print("F")
+    else:
+        print(f"{round(percent)}%") 
+    
+    
+def fuel_fun():
+    while True:
+        try:
+            fraccio = input("Fraction: ")
+            x, y = fraccio.split("/")
+            x = int(x)
+            y = int(y)
+            
+            if x > y:
+                raise ValueError  # força que el programa vagi a except
+                
+                
+            percentatge = (x / y) * 100
+            return percentatge
+        except (ValueError, ZeroDivisionError):
+            pass
+        
+                
+                    
+main()
+
+
+
+
+# EXEMPLE 2:
+
+preus_d = {
+    "Baja Taco": 4.25,
+    "Burrito": 7.50,
+    "Bowl": 8.50,
+    "Nachos": 11.00,
+    "Quesadilla": 8.50,
+    "Super Burrito": 8.50,
+    "Super Quesadilla": 9.50,
+    "Taco": 3.00,
+    "Tortilla Salad": 8.00
+}
+
+
+
+def item_preu():
+    total = 0.0
+    while True:
+        try:
+            item = input("Item: ").title()
+            
+        except EOFError:
+            return total
+                                   
+        if item in preus_d:
+            item_preu = preus_d[item]
+            total = total + item_preu
+            print(f"Total: {total}$") 
+                                                      
+        
+item_preu()         
+                    
