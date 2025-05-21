@@ -67,4 +67,47 @@ def item_preu():
                                                       
         
 item_preu()         
-                    
+
+
+# EXEMPLE 3
+
+
+def main():
+    compte_final = comptar_items()
+    for item in sorted(compte_final):
+        print(f"{compte_final[item]} {item}")
+    
+
+def fer_llista():
+    llista = []
+    while True:
+        try:
+            item = input("")
+            
+            # all uppercase
+            item_maj = item.upper()
+            
+            # fer llista
+            llista += [item_maj]
+            
+        except EOFError:
+            return llista
+                  
+            
+def comptar_items():
+    compte = {}
+    llistat_final = sorted(fer_llista())
+    for item in llistat_final:
+        if item in compte:
+            compte[item] += 1
+        else:
+            compte[item] = 1
+    return compte
+        
+   
+            
+        
+main()
+
+
+
