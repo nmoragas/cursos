@@ -110,4 +110,54 @@ def comptar_items():
 main()
 
 
+# EXEMPLE 4:
 
+dic_mesos = {
+    "January": 1, "February": 2, "March": 3, "April": 4,
+    "May": 5, "June": 6, "July": 7, "August": 8,
+    "September": 9, "October": 10, "November": 11, "December": 12
+}
+
+
+def main():
+    print(modif_data())
+
+
+def modif_data():
+    while True:
+        raw = input("Date: ").strip()
+
+        # 1) Format: M/D/YYYY
+        if "/" in raw:
+            clean = raw.replace(",", "")          # treu comes si n'hi ha
+            parts = clean.split("/")              # separa per /
+            if len(parts) == 3:
+                m_str, d_str, y_str = parts
+                if m_str.isdigit() and d_str.isdigit() and y_str.isdigit():
+                    m, d, y = int(m_str), int(d_str), int(y_str)
+                    if 1 <= m <= 12 and 1 <= d <= 31 and len(y_str) == 4:
+                        return f"{y:04d}-{m:02d}-{d:02d}"
+            # si no és vàlid, torna al while
+            pass
+
+        # 2) Format amb nom de mes: "MonthName D, YYYY"
+        if "," in raw:
+            clean = raw.replace(",", "")          # treu la coma
+            parts = clean.split()
+            if len(parts) == 3:
+                month_str, d_str, y_str = parts
+                if (month_str in dic_mesos
+                    and d_str.isdigit()
+                    and y_str.isdigit()):
+                    m = dic_mesos[month_str]
+                    d, y = int(d_str), int(y_str)
+                    if 1 <= d <= 31 and len(y_str) == 4:
+                        return f"{y:04d}-{m:02d}-{d:02d}"
+            pass
+
+        # Qualsevol altre format: torna a demanar
+        pass
+
+
+
+main()
