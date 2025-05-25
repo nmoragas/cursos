@@ -13,3 +13,89 @@ def main():
     print(f"Output: {emo}")
 
 main()
+
+###############################################################################################################################
+
+
+# EXEMPLE2
+
+# pip install pyfiglet
+
+
+#implement a program that:
+
+    #Expects zero or two command-line arguments:
+        #Zero if the user would like to output text in a random font.
+        #Two if the user would like to output text in a specific font, in which case the first of the two should be -f or --font,
+        # and the second of the two should be the name of the font.
+    #Prompts the user for a str of text.
+    #Outputs that text in the desired font.
+# If the user provides two command-line arguments and the first is not -f or --font or
+# the second is not the name of a font, the program should exit via sys.exit with an error message.
+
+# import to python:
+import pyfiglet
+
+#from pyfiglet import Figlet
+#figlet = Figlet()
+
+# You can then get a list of available fonts with code like this:
+#figlet.getFonts()
+
+
+# You can set the font with code like this, wherein f is the font’s name as a str:
+#figlet.setFont(font=f)
+
+#And you can output text in that font with code like this, wherein s is that text as a str:
+#print(figlet.renderText(s))
+
+
+import pyfiglet
+import sys
+
+
+from pyfiglet import Figlet
+figlet = Figlet()
+fonts = figlet.getFonts()
+
+
+def main():
+    if len(sys.argv) == 1:
+       transfromed_z = zero_line()
+       print(f"Output: \n{transfromed_z}")
+
+# If the user provides two command-line arguments and the first is not -f or --font or
+# the second is not the name of a font, the program should exit via sys.exit with an error message.
+    elif len(sys.argv) == 3:
+        if sys.argv[1] not in ["-f", "--font"]:
+            sys.exit("Invalid usage")
+        if sys.argv[2] not in fonts:
+            sys.exit("Invalid usage")
+        else:
+            transformed_tw = two_line()
+            print(f"Output: \n{transformed_tw}")
+
+
+    else:
+        sys.exit("Invalid usage")
+
+# generació de funcions
+# 0 arguments:
+
+def zero_line():
+    to_transform = input("Input: ")
+    transfromed = figlet.renderText(to_transform)
+    return transfromed
+
+
+# 2 arguments:
+def two_line():
+    to_transform_tw = input("Input: ")
+    f = sys.argv[2]
+    figlet.setFont(font=f)
+    transfromed_tw = figlet.renderText(to_transform_tw)
+    return transfromed_tw
+
+
+main()
+
