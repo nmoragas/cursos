@@ -142,3 +142,59 @@ def fer_llista():
 
 
 main()
+
+
+########################################################################################################################
+
+# EXERCICI 4:
+'''
+INSTRUCIONS
+1 Prompts the user for a level, 
+.   If the user does not input a positive integer, the program should prompt again.
+2 Randomly generates an integer between 1 and 
+,   inclusive, using the random module.
+3 Prompts the user to guess that integer. If the guess is not a positive integer, the program should prompt the user again.
+    If the guess is smaller than that integer, the program should output Too small! and prompt the user again.
+    If the guess is larger than that integer, the program should output Too large! and prompt the user again.
+    If the guess is the same as that integer, the program should output Just right! and exit.
+'''
+# 3 guess:
+import random
+
+def guess_int():
+    level = is_integrer()
+    random_int = random.randint(1,level)
+
+    while True:
+        guess = input("Guess: ")
+        guess_int = int(guess)
+        
+        if guess_int > random_int:
+            print("Too large!")
+            pass
+
+        elif guess_int < random_int:
+            print("Too small!")
+            pass
+        else:
+            print("Just right!")
+            break
+         
+
+
+# 1 level user
+def is_integrer():
+    while True:
+        try:
+            level_int = int(input("Level: "))
+            if level_int > 0:
+                return level_int
+        # qualsevol altra cosa que no sigui una int >0 error
+        except ValueError:
+            pass
+
+
+    
+guess_int()
+
+
