@@ -299,5 +299,70 @@ def generate_integer(level):
 if __name__ == "__main__":
     main()
 
+##################################################################################
+
+# EXERCICI6:
+
+'''
+Expects the user to specify as a command-line argument the number of Bitcoins, 
+, that they would like to buy. If that argument cannot be converted to a float, the program should exit via sys.exit with an error message.
+Queries the API for the CoinCap Bitcoin Price Index at rest.coincap.io/v3/assets/bitcoin?apiKey=YourApiKey. You should replace YourApiKey with the actual API key you obtained from your CoinCap account dashboard, which returns a JSON object, among whose nested keys is the current price of Bitcoin as a float. Be sure to catch any exceptions, as with code like:
+import requests
+
+Outputs the current cost of Bitcoins in USD to four decimal places, using , as a thousands separator.
+
+{
+  "data": {
+    "id": "bitcoin",
+    "rank": "1",
+    "symbol": "BTC",
+    "name": "Bitcoin",
+    "supply": "19823321.0000000000000000",
+    "maxSupply": "21000000.0000000000000000",
+    "marketCapUsd": "1939613325892.4607145113457500",
+    "volumeUsd24Hr": "12341417371.3505338276601668",
+    "priceUsd": "97845.0243474572557500",
+    "changePercent24Hr": "1.4324165997531723",
+    "vwap24Hr": "96203.8859537212418977",
+    "explorer": "https://blockchain.info/"
+  },
+  "timestamp": 1739399343596
+}
+
+'''
+
+import requests
+import sys
+
+api_key = "362ac5e5d59dfdc2e65e2f47b05f7b82bf44520e583b9bdaceefb77cd8cd412e"
+
+def main():
+# cridar la conversio
+    response = requests.get(
+        "https://rest.coincap.io/v3/assets/bitcoin",
+        headers={"Authorization": f"Bearer {api_key}"}
+    )
+    content = response.json()
+    preu_usb = float(content["data"]["priceUsd"])
+    #print(preu_usb)
+    
+    usb_user = float(n_comprovacio())
+    amount = usb_user*preu_usb
+    print(f"${amount:,.4f}")
+
+def n_comprovacio():
+# 1 comprovacio primer argument:
+    if len(sys.argv) <2:
+        sys.exit("Missing command-line argument")
+    else:
+        try:
+            if float(sys.argv[1]):
+                n_bitcoin = sys.argv[1]
+                return n_bitcoin
+                
+        except:
+            sys.exit("Command-line argument is not a number")
+main()
+
 
 
