@@ -1,0 +1,43 @@
+# EXEMPLE1:
+# outputs that same text but:
+#   #  with all vowels (A, E, I, O, and U) omitted,  # whether inputted in uppercase or lowercase.
+
+# upper() and . lower()
+
+def main():
+    twiter = input("Input: ")
+    print(shorten(twiter))
+
+
+def shorten(word):
+    vocals = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    output_text = ""
+
+    for lletra in word:
+        if lletra not in vocals:
+            output_text += lletra
+
+    return str(output_text)
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+# pytest test_twttr.py
+# testar el programa twttr
+
+from twttr import shorten
+
+def main():
+    shorten_test()
+
+def test_shorten():
+    assert shorten("twiter") == "twtr"
+    assert shorten("GAT") == "GT"
+    assert shorten("AEio") == ""
+
+
+if __name__ == "__main__":
+    main()
