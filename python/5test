@@ -41,3 +41,38 @@ def test_shorten():
 
 if __name__ == "__main__":
     main()
+
+
+# EXEMPLE 2
+
+# upper() and . lower()
+
+def main():
+    twiter = input("Input: ")
+    print(shorten(twiter))
+
+
+def shorten(word):
+    vocals = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    output_text = ""
+
+    for lletra in word:
+        if lletra not in vocals:
+            output_text += lletra
+
+    return str(output_text)
+
+
+if __name__ == "__main__":
+    main()
+
+
+from bank import value
+
+
+def test_value():
+    assert value("hello") == 0
+    assert value("h") == 20
+    assert value("AEio") == 100
+    assert value("hello, thanks for all") == 0
+    assert value("HELLO") == 0
