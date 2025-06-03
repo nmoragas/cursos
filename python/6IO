@@ -1,0 +1,56 @@
+# EXERCICI 1
+
+# en un fitxer anomenat lines.py, implementeu un programa que esperi exactament un argument de línia d'ordres, el nom (o la ruta) d'un fitxer Python,
+#  i que mostri el nombre de línies de codi d'aquest fitxer, excloent els comentaris i les línies en blanc. 
+# Si l'usuari no especifica exactament:
+#         un argument de línia d'ordres, o si 
+#          el nom del fitxer especificat no acaba en .py, 
+#         o si el fitxer especificat no existeix, 
+# 
+# el programa hauria de sortir mitjançant sys.exit.
+# 
+# Suposeu que qualsevol línia que comenci amb #, opcionalment precedida d'espais en blanc, és un comentari. 
+# (Una docstring no s'ha de considerar un comentari.) Suposeu que qualsevol línia que només contingui espais en blanc està en blanc.
+
+import sys
+
+# 1 comprovar fitxer entrada
+
+def main():
+    
+    if len(sys.argv) < 2:
+        sys.exit("Too few command-line arguments")
+    if len(sys.argv) > 2:
+        sys.exit("Too many command-line arguments")
+    if len(sys.argv) == 2:
+        filename = sys.argv[1]
+
+        if not filename.endswith(".py"):
+            sys.exit("Not a Python file")
+
+        else:
+            resultat = comptar_lineas()
+            print(resultat)
+
+
+def comptar_lineas():
+    filename = sys.argv[1]
+    try:
+        comptatge = 0
+        with open(filename) as file:
+            for line in file:
+                #stripped = line.lstrip()
+                if line == "" or line.startswith("#") or line == "\n":
+                    continue
+                comptatge += 1
+            return comptatge  
+            
+    except FileNotFoundError:
+        sys.exit("File does not exist")
+
+if __name__ == "__main__":
+    main()
+#########################################################################
+
+
+    
