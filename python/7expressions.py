@@ -83,4 +83,48 @@ if __name__ == "__main__":
 # EXERCICI 3:
 
 
+
+
+
+###################
+
+# exercici 4:
+import re
+import sys
+
+
+def main():
+    print(count(input("Text: ")))
+
+
+def count(s):
+    entrada = re.findall(r"\bum\b", s, re.IGNORECASE)
+    return len(entrada)
+
+
+
+if __name__ == "__main__":
+    main()
+
+
+##### py_test:
+from um import count
+
+
+def main():
+    test_um()
+    test_um_majucules()
+
+def test_um():
+    assert count("Hola bon dia um") == 1
+    assert count("um") == 1
+    assert count("AEio") == 0
+
+
+def test_um_majucules():
+    assert count("Hola bon dia Um") == 1
+    
+if __name__ == "__main__":
+    main()
+
     
