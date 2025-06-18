@@ -128,3 +128,22 @@ if __name__ == "__main__":
     main()
 
     
+##########################################
+
+#EXERCICI 6
+
+# python3 -m pip install --user validators
+
+import validators
+
+
+def main():
+    print(validation(input("What's your email address?: ")))
+
+
+def validation(s):
+    return validators.email(s) is True
+
+
+if __name__ == "__main__":
+    main()
