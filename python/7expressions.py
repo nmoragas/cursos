@@ -161,22 +161,22 @@ if __name__ == "__main__":
 ##### py_test:
 from um import count
 
-
 def main():
     test_um()
-    test_um_majucules()
+
 
 def test_um():
-    assert count("Hola bon dia um") == 1
+    assert count("hello um") == 1
+    assert count("hello my name is") == 0
     assert count("um") == 1
-    assert count("AEio") == 0
+    assert count("Um") == 1
+    assert count("yummy") == 0
 
 
-def test_um_majucules():
-    assert count("Hola bon dia Um") == 1
-    
+
 if __name__ == "__main__":
     main()
+
 
     
 ##########################################
