@@ -108,7 +108,32 @@ if __name__ == "__main__":
 
 
 # test
+from numb3rs import validate
 
+def main():
+    test_numb3rs()
+    test_rang()
+    test_num()
+
+def test_numb3rs():
+    assert validate("127.0.0.1") == True
+    assert validate("255.255.255.255") == True
+    assert validate("cat") == False
+
+
+
+def test_rang():
+    assert validate("300.1.1.2") == False
+    assert validate("1.313.787.677") == False
+
+def test_num():
+    assert validate("127.1") == False
+
+
+
+
+if __name__ == "__main__":
+    main()
 
 
 
