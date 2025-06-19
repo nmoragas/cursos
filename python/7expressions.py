@@ -85,25 +85,78 @@ import re
 import sys
 
 
+dictionary = {
+    "12 AM": "00",
+    "1 AM": "01",
+    "2 AM": "02",
+    "3 AM": "03",
+    "4 AM": "04",
+    "5 AM": "05",
+    "6 AM": "06",
+    "7 AM": "07",
+    "8 AM": "08",
+    "9 AM": "09",
+    "10 AM": "10",
+    "11 AM": "11",
+    "12 PM": "12",
+    "1 PM": "13",
+    "2 PM": "14",
+    "3 PM": "15",
+    "4 PM": "16",
+    "5 PM": "17",
+    "6 PM": "18",
+    "7 PM": "19",
+    "8 PM": "20",
+    "9 PM": "21",
+    "10 PM": "22",
+    "11 PM": "23"
+}
+
+
 def main():
-    print(validate(input("IPv4 Address: ")))
+    print(convert(input("Hours: ")))
 
+def convert(s):
+   # pattern = r'(\d{1,2})(:\d{2})?\s(AM|PM)\s+to\s+(\d{1,2})(:\d{2})?\s(AM|PM)'
+    pattern = r'^(\d{1,2})(:\d{2})?\s(AM|PM) to (\d{1,2})(:\d{2})?\s(AM|PM)$'
+    match = re.search(pattern, s)
 
-def validate(ip):
-    pattern = r"^(\d+)\.(\d+)\.(\d+)\.(\d+)$"
-    match = re.match(pattern, ip)
-    if match:
-        for part in match.groups():
-            if not 0 <= int(part) <= 255:
-                return False
-        return True
-    return False
+    if not match:
+        raise ValueError("Format incorrecte")
 
+    # Hora inicial
+    h1 = match.group(1)
+    m1 = match.group(2)[1:] if match.group(2) else "00"
+    p1 = match.group(3)
+
+    # Validació minuts inicial
+    if not m1.isdigit() or int(m1) > 59:
+        raise ValueError("Format incorrecte")
+
+    h1_24 = dictionary.get(f"{h1} {p1}")
+    if h1_24 is None:
+        raise ValueError("Format incorrecte")
+
+    # Hora final
+    h2 = match.group(4)
+    m2 = match.group(5)[1:] if match.group(5) else "00"
+    p2 = match.group(6)
+
+    # Validació minuts finals
+    if not m2.isdigit() or int(m2) > 59:
+        raise ValueError("Format incorrecte")
+
+    h2_24 = dictionary.get(f"{h2} {p2}")
+    if h2_24 is None:
+        raise ValueError("Format incorrecte")
+
+    return f"{h1_24}:{m1} to {h2_24}:{m2}"
 
 
 
 if __name__ == "__main__":
     main()
+
 
 
 
