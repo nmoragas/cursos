@@ -108,28 +108,25 @@ if __name__ == "__main__":
 
 
 # test
-from numb3rs import validate
+from working import convert
+import pytest
 
 def main():
-    test_numb3rs()
-    test_rang()
-    test_num()
+    test_convert()
+    test_error_to()
+    test_error()
 
-def test_numb3rs():
-    assert validate("127.0.0.1") == True
-    assert validate("255.255.255.255") == True
-    assert validate("cat") == False
+def test_convert():
+    assert convert("6 AM to 8 PM") == "06:00 to 20:00"
 
 
+def test_error_to():
+    with pytest.raises(ValueError):
+        convert("9:00 AM 5:00")
 
-def test_rang():
-    assert validate("300.1.1.2") == False
-    assert validate("1.313.787.677") == False
-
-def test_num():
-    assert validate("127.1") == False
-
-
+def test_error():
+    with pytest.raises(ValueError):
+        convert("9:67 AM to 5:00 PM")
 
 
 if __name__ == "__main__":
