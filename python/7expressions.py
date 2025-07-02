@@ -11,6 +11,7 @@ def validate(ip):
     match = re.search(pattern, ip)
     
 
+ 
     if match:
         primer, segon, tercer , quart= ip.split(".")
         n_primer = int(primer)
