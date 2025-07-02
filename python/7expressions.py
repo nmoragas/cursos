@@ -12,6 +12,7 @@ def validate(ip):
 
  
  
+ 
     if match:
         primer, segon, tercer , quart= ip.split(".")
         n_primer = int(primer)
