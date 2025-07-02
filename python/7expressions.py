@@ -9,7 +9,8 @@ def main():
 def validate(ip):
     pattern = r"^[F0-9]{3}.[F0-9].[F0-9].[F0-9]"
     match = re.search(pattern, ip)
-    
+
+ 
  
     if match:
         primer, segon, tercer , quart= ip.split(".")
