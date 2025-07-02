@@ -6,7 +6,6 @@ import sys
 def main():
     print(validate(input("IPv4 Address: ")))
 
-
 def validate(ip):
     pattern = r"^[F0-9]{3}.[F0-9].[F0-9].[F0-9]"
     match = re.search(pattern, ip)
